@@ -1,0 +1,84 @@
+:root {
+    --pal-light: rgb(123, 69, 148);
+    --pal-semi-dark: rgb(97, 59, 129);
+    --pal-dark: rgb(43, 26, 74);
+    --pal-light-unsaturated: rgb(125, 117, 167);
+}
+
+.bg-pal-light-dark-gradient-right {
+    background: linear-gradient(to right, var(--pal-light), var(--pal-dark));
+    background-attachment: fixed;
+}
+
+.bg-pal-light-dark-gradient-bottom {
+    background: linear-gradient(to bottom, var(--pal-light), var(--pal-dark));
+    background-attachment: fixed;
+}
+
+.bg-pal-light-dark-gradient-center {
+    background: linear-gradient(to right, var(--pal-light), var(--pal-dark), var(--pal-light));
+    background-attachment: fixed;
+}
+
+.bg-pal-dark-light-gradient-center {
+    background: linear-gradient(to right, var(--pal-dark), var(--pal-light), var(--pal-dark));
+    background-attachment: fixed;
+}
+
+.bg-pal-dark-semidark-gradient-center {
+    background: linear-gradient(to right, var(--pal-dark), var(--pal-semi-dark), var(--pal-dark));
+    background-attachment: fixed;
+}
+
+.bg-pal-dark {
+    background: rgb(43, 26, 74);
+    background-attachment: fixed;
+}
+
+.bg-pal-light {
+    background: rgb(142, 87, 168);
+    background-attachment: fixed;
+}
+
+.item-card {
+    background: var(--pal-light-unsaturated);
+}
+
+.bg-stars {
+    background-image: url("/background.webp");
+}
+
+.bg-invisible {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.bg-invisible:focus {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+html * {
+    font-family: "Audiowide", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.text-light::placeholder {
+    color: white;
+}
+
+
+.sideways-scroll-row {
+    white-space: nowrap;
+    overflow: scroll;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent 0%, black 40%, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%, black 60%, transparent 100%);
+}
+
+.sideways-scroll-row>.sideways-scroll-item {
+    display: inline-block;
+}
+
+.fs-smaller {
+    font-size: smaller;
+}
