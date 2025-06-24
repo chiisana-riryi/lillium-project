@@ -2,7 +2,9 @@
     --pal-light: rgb(123, 69, 148);
     --pal-semi-dark: rgb(97, 59, 129);
     --pal-dark: rgb(43, 26, 74);
-    --pal-light-unsaturated: rgb(125, 117, 167);
+    --pal-semidark-unsaturated: rgb(125, 117, 167);
+    --pal-light-unsaturated: rgb(136, 129, 172);
+    --pal-light-grey: rgb(192, 192, 192);
 }
 
 .bg-pal-light-dark-gradient-right {
@@ -39,6 +41,22 @@
 
 }.bg-pal-light {
     background: var(--pal-light);
+}
+
+.pal-light {
+    color: var(--pal-light);
+}
+
+.pal-dark {
+    color: var(--pal-dark);
+}
+
+.pal-semidark {
+    color: var(--pal-semi-dark);
+}
+
+.pal-light-unsaturated {
+    color: var(--pal-light-unsaturated);
 }
 
 .item-card {
@@ -82,4 +100,16 @@ html * {
 
 .fs-smaller {
     font-size: smaller;
+}
+
+.btn-white, .btn-white:active, .btn-white:visited {
+    color: #FFFFFF;
+}
+
+.btn-white:hover {
+    color: var(--pal-light-grey);
+}
+
+.btn-white:disabled {
+    color: var(--pal-light)
 }

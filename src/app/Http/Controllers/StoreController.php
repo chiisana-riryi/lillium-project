@@ -59,6 +59,8 @@ class StoreController extends Controller
             }
         }
 
+
+
         return view(
             'store',
             [
@@ -66,7 +68,8 @@ class StoreController extends Controller
                 'active_subcats' => $subcats,
                 // 'products' => $products,
                 'categories_map' => $categories_map,
-                'paginator' => $paginator
+                'paginator' => $paginator,
+                'page' => min($page, $paginator->lastPage())
             ]
         );
     }

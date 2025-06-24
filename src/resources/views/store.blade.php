@@ -34,7 +34,7 @@
 
         <div class="row">
             <div class="col-12 col-md-3 pe-0 mb-4 mb-md-0">
-                <h3> Categories</h3>
+                <h3> Properties </h3>
                 <div class="item-card card pt-2 px-2 text-light">
 
                     @foreach ($categories_map as $key => $subcats)
@@ -51,8 +51,7 @@
 
                                 <div class="col-auto ms-auto">
                                     <a class="text-reset text-decoration-none" id="category-collapse-{{ $collapse_id }}"
-                                        data-bs-toggle="collapse"
-                                        onclick="storeCollapseState('{{ $collapse_id }}')"
+                                        data-bs-toggle="collapse" onclick="storeCollapseState('{{ $collapse_id }}')"
                                         href="#{{ $collapse_id }}">
                                         <i class="bi bi-chevron-up"></i>
                                     </a>
@@ -63,7 +62,7 @@
                                     <div class="row px-3">
                                         <hr class="m-0">
                                         <button
-                                            class="btn text-decoration-none my-1 {{ in_array($subcat['key'], $active_subcats) ? 'bg-light text-dark' : 'text-reset' }}"
+                                            class="btn btn-white text-decoration-none my-1 {{ in_array($subcat['key'], $active_subcats) ? 'bg-light text-dark' : '' }}"
                                             onclick="subcategoryPressed({{ $subcat['key'] }})">
                                             {{ $subcat['value'] }}
                                         </button>
@@ -142,6 +141,51 @@
             <hr class="d-md-none">
 
             <div class ="col-12 col-md-9">
+                <div class="row d-flex justify-content-center py-3">
+                    <div class="col-8">
+                        <div class="row">
+                            <button onclick="changePage({{ $page - 1 }})" {{ (bool) ($page > 1) ? '' : 'disabled' }}
+                                class="col-1 btn btn-white d-flex align-items-center justify-content-center border-0 text-reset">
+
+                                @if ((bool) ($page > 1))
+                                    <i class="bi bi-chevron-left"></i>
+                                @else
+                                    <i class="bi bi-chevron-bar-left"></i>
+                                @endif
+
+                            </button>
+                            @for ($i = 1; $i <= 9; $i++)
+                                @php
+                                    $target_page = $page + ($i - 5);
+                                @endphp
+                                <button onclick="changePage({{ $target_page }})"
+                                    {{ (bool) ($target_page > 0) && (bool) ($target_page <= $paginator->lastPage()) ? '' : 'disabled' }}
+                                    class="col-1 btn btn-white rounded-2 d-flex align-items-center justify-content-center {{ $target_page == $page ? 'text-reset border-1 border' : 'border-0' }}">
+                                    {{ $target_page }}
+                                </button>
+                            @endfor
+
+                            <button onclick="changePage({{ $page + 1 }})"
+                                {{ (bool) ($page < $paginator->lastPage()) ? '' : 'disabled' }}
+                                class="col-1 btn btn-white d-flex align-items-center justify-content-center border-0 text-reset">
+
+                                @if ((bool) ($page < $paginator->lastPage()))
+                                    <i class="bi bi-chevron-right"></i>
+                                @else
+                                    <i class="bi bi-chevron-bar-right"></i>
+                                @endif
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row my-2 mx-2 d-flex justify-content-end">
+                    <div class="col-auto">
+                        <span> Showing </span> {{ $paginator->count() }} <span> of </span> {{ $paginator->total() }} | <span> Page </span>
+                        {{ $paginator->currentPage() }}
+                    </div>
+                </div>
+
                 <div class="row d-flex justify-content-center">
                     <div class="d-inline-flex flex-wrap justify-content-start">
                         {{-- @for ($i = 0; $i < 100; $i++) --}}
@@ -149,9 +193,9 @@
                             <div class="p-1 col-4 col-lg-3 my-1">
                                 <div class="item-card card border-1 text-light rounded-3 p-1">
                                     <img class="img rounded-3 w-100" src="https://picsum.photos/id/69/200">
-                                    <h5 class="pt-2 my-0 text-truncate"> {{$p->product_name}} </h5>
+                                    <h5 class="pt-2 my-0 text-truncate"> {{ $p->product_name }} </h5>
                                     <hr class="my-1">
-                                    <h6 class="my-0 text-end"> {{$p->price}} </h6>
+                                    <h6 class="my-0 text-end"> {{ $p->price }} </h6>
                                     <hr class="my-1">
                                     <p class="fs-smaller truncate-multiline m-0">
                                         {{ $p->description }}
@@ -163,6 +207,15 @@
                     </div>
                 </div>
             </div>
+
+            <script>
+                function changePage(page) {
+                    const url = new URL(window.location.href);
+
+                    url.searchParams.set('page', page);
+                    window.location.href = url.toString();
+                }
+            </script>
         </div>
     </div>
 @endsection
