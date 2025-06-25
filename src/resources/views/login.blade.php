@@ -13,7 +13,7 @@
 <body class="bg-stars">
 
     <main class="container-fluid d-flex flex-column m-0 p-0 min-vh-100">
-        @include('partials.navbar', ['background_off' => true])
+        @include('partials.navbar', ['background_class' => "bg-dark-translucent"])
 
         <div class="container d-flex flex-fill align-items-center justify-content-center pb-5">
             <div class="row w-100 text-light d-flex justify-content-center mb-5 pb-5">

@@ -79,7 +79,7 @@
                     @for ($i = 0; $i < ceil((50 / count($featured))); $i++)
                         @foreach ($featured as $f)
                             <a class="item-card card d-inline-block text-light text-decoration-none p-2" href="#">
-                                <img class="img" src="https://picsum.photos/id/{{ $f->product_id }}/200"
+                                <img class="img w-100" src="https://placehold.co/200"
                                     style="width: 200px; height: 200px;">
                                 <h4 class="pt-2 my-0"> {{ $f->product_name }} </h4>
                                 <hr class="my-1">

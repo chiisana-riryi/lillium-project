@@ -1,7 +1,7 @@
 :root {
-    --pal-light: rgb(123, 69, 148);
-    --pal-semi-dark: rgb(97, 59, 129);
-    --pal-dark: rgb(43, 26, 74);
+    --pal-light: rgb(101, 52, 124);
+    --pal-semi-dark: rgb(80, 46, 107);
+    --pal-dark: rgb(37, 22, 66);
     --pal-dark-translucent: rgba(43, 26, 74, 0.555);
     --pal-semidark-unsaturated: rgb(125, 117, 167);
     --pal-light-unsaturated: rgb(136, 129, 172);

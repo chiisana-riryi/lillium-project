@@ -1,8 +1,8 @@
 <div
-    class="container-fluid py-3 {{ isset($background_off) && $background_off == true ? '' : 'bg-pal-dark-semidark-gradient-center' }}">
+    class="container-fluid py-3 {{ isset($background_off) && $background_off == true ? '' : (isset($background_class) ? $background_class : 'bg-pal-dark-semidark-gradient-center') }}">
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-md d-flex justify-content-between px-5">
-            <a class="fs-1 navbar-brand text-light d-flex align-items-center" href="/home">
+        <nav class="navbar navbar-expand-lg d-flex justify-content-between px-5">
+            <a class="fs-1 navbar-brand text-light d-flex align-items-center m-0" href="/home">
                 <img src="/logo.webp">&nbsp;LILLIUM
             </a>
 
@@ -13,7 +13,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbar-content">
-                <ul class="navbar-nav text-end ms-auto gap-md-5 fw-semibold">
+                <ul class="navbar-nav text-end ms-auto gap-lg-5 fw-semibold">
                     <li class="nav-item">
                         <a class="nav-link fs-5 text-light" href="#">Codex&nbsp;<i class="bi bi-book"></i></a>
                     </li>
@@ -39,11 +39,22 @@
                     @if ($user == null)
                         <li class="nav-item">
                             <a class="nav-link ms-5 fs-5 text-light" href="/login">Login&nbsp;
-                                <i class="bi bi-box-arrow-in-right"></i></a>
+                                <i class="bi bi-box-arrow-in-right"></i>
+                            </a>
                         </li>
                     @else
-                        <a class="nav-link ms-5 fs-5 text-light" href="/login">{{ $user->name }}&nbsp;
-                            <i class="bi bi-person-circle"></i></a>
+                        @if ($user->privilege_level > 0)
+                        <li class="nav-item">
+                            <a class="nav-link ms-5 fs-5 text-light" href="/listing">Listing&nbsp;
+                                <i class="bi bi-hammer"></i>
+                            </a>
+                        </li>
+                        @endif
+                        <li class="nav-item">
+                            <a class="nav-link ms-5 fs-5 text-light" href="/login">{{ $user->name }}&nbsp;
+                                <i class="bi bi-person-circle"></i>
+                            </a>
+                        </li>
                     @endif
                 </ul>
             </div>
@@ -51,5 +62,5 @@
         </nav>
     </div>
 
-    <hr class="border-light">
+    <hr class="border-light mb-0">
 </div>

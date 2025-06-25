@@ -23,13 +23,13 @@ class StoreController extends Controller
         
         $products = DB::select(
             "
-            select p.product_id, c.category_id, p.product_name, c.category_name, p.price, p.description, pi.image_directory from products p
+            select p.product_id, c.category_id, p.product_name, c.category_name, s.subcategory_name, p.price, p.description, pi.image_directory from products p
             join categories c on c.category_id = p.category_id
             join subcategories s on s.subcategory_id  = p.subcategory_id 
             left join product_images pi on pi.product_id = p.product_id
             where p.product_name like ?
             $category_selector
-            group by p.product_id, c.category_id, p.product_name, c.category_name, p.price, p.description, pi.image_directory
+            group by p.product_id, c.category_id, p.product_name, c.category_name,s.subcategory_name, p.price, p.description, pi.image_directory
             order by p.is_featured desc, pi.image_id asc
             ;
             "
