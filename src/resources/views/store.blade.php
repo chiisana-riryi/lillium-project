@@ -27,6 +27,7 @@
                 </h1>
             </div>
             <div class="col-6 d-flex align-items-center justify-content-end">
+                {{-- search bar --}}
                 @include('partials.elements.searchbar')
             </div>
         </div>
@@ -36,6 +37,7 @@
             <div class="col-8 col-lg-4 col-xl-3 pe-0 mb-4 mb-md-0">
                 <h3> Properties </h3>
 
+                {{-- categories --}}
                 @include('partials.elements.categorymenu')
             </div>
 
@@ -44,11 +46,13 @@
             <div class ="col-12 col-lg-8 col-xl-9">
                 <div class="row d-flex justify-content-center py-3">
                     <div class="col-8">
+                        {{-- page controls --}}
                         @include('partials.elements.paginatorcontrols')
                     </div>
                 </div>
 
                 <div class="row my-2 mx-2 d-flex justify-content-end">
+                    {{-- page label --}}
                     @include('partials.elements.pageslabel')
                 </div>
 
@@ -57,7 +61,7 @@
                         {{-- @for ($i = 0; $i < 100; $i++) --}}
                         @foreach ($paginator as $p)
                             <div class="p-1 col-4 col-xl-3 my-1">
-                                <div class="item-card card border-1 text-light rounded-3 p-1">
+                                <a class="item-card card border-1 text-light text-decoration-none rounded-3 p-1" href="#">
                                     <img class="img rounded-3 w-100" src="https://placehold.co/200">
                                     <h6 class="my-2 text-end"> {{ $p->subcategory_name }}</h6>
                                     <h5 class="pt-2 my-0 text-truncate"> {{ $p->product_name }} </h5>
@@ -68,7 +72,7 @@
                                         {{ $p->description }}
                                     </p>
                                     <hr class="my-1">
-                                </div>
+                                </a>
                             </div>
                         @endforeach
                     </div>

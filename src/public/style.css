@@ -3,7 +3,7 @@
     --pal-semi-dark: rgb(80, 46, 107);
     --pal-dark: rgb(37, 22, 66);
     --pal-dark-translucent: rgba(43, 26, 74, 0.555);
-    --pal-semidark-unsaturated: rgb(125, 117, 167);
+    --pal-semidark-unsaturated: rgb(84, 77, 117);
     --pal-light-unsaturated: rgb(136, 129, 172);
     --pal-light-grey: rgb(192, 192, 192);
 }
@@ -68,6 +68,10 @@
     color: var(--pal-light-unsaturated);
 }
 
+.back-card {
+    background: var(--pal-semidark-unsaturated);
+}
+
 .item-card {
     background: var(--pal-light-unsaturated);
 }
@@ -120,5 +124,9 @@ html * {
 }
 
 .btn-white:disabled {
-    color: var(--pal-light)
+    color: var(--pal-light-unsaturated)
+}
+
+.text-light {
+    color: #ffffffda !important;
 }

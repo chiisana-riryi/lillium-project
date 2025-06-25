@@ -1,3 +1,7 @@
+@php
+    $is_compact_mode = isset($compact_mode) && $compact_mode == true;
+@endphp
+
 <div class="item-card card pt-2 px-2 text-light">
 
     @foreach ($categories_map as $key => $subcats)
@@ -7,9 +11,8 @@
         @endphp
 
         <div class="p-2 mb-2 rounded-2 border border-1">
-            <div
-                class="row h3 text-reset text-decoration-none d-flex justify-content-center align-items-center m-0">
-                <div class="col">
+            <div class="row h3 text-reset text-decoration-none d-flex justify-content-center align-items-center m-0">
+                <div class="{{ $is_compact_mode ? 'col-auto' : 'col' }}">
                     <a class= "text-reset text-decoration-none" id="category-collapse-{{ $collapse_id }}"
                         data-bs-toggle="collapse" onclick="storeCollapseState('{{ $collapse_id }}')"
                         href="#{{ $collapse_id }}">
@@ -23,19 +26,34 @@
                 <div class="col-auto me-2 p-0">
                     {{ $category['value'] }}
                 </div>
-
+                <hr class="m-0 opacity-25">
             </div>
             <div class="collapse" id={{ $collapse_id }}>
-                @foreach ($subcats as $subcat)
-                    <div class="row px-3">
-                        <hr class="m-0">
-                        <button
-                            class="btn btn-white text-decoration-none my-1 text-end {{ in_array($subcat['key'], $active_subcats) ? 'bg-light text-dark' : '' }}"
-                            onclick="subcategoryPressed({{ $subcat['key'] }})">
-                            {{ $subcat['value'] }}
-                        </button>
+                @if ($is_compact_mode)
+                    <div class="row">
+                        @foreach ($subcats as $subcat)
+                            <div class="col-auto px-3 py-3">
+                                <button
+                                    class="btn btn-white text-decoration-none my-1 text-end {{ in_array($subcat['key'], $active_subcats) ? 'bg-light text-dark' : '' }}"
+                                    onclick="subcategoryPressed({{ $subcat['key'] }})">
+                                    {{ $subcat['value'] }}
+                                </button>
+                                <hr class="m-0 opacity-75">
+                            </div>
+                        @endforeach
                     </div>
-                @endforeach
+                @else
+                    @foreach ($subcats as $subcat)
+                        <div class="row px-3">
+                            <hr class="m-0 opacity-75">
+                            <button
+                                class="btn btn-white text-decoration-none my-1 text-end {{ in_array($subcat['key'], $active_subcats) ? 'bg-light text-dark' : '' }}"
+                                onclick="subcategoryPressed({{ $subcat['key'] }})">
+                                {{ $subcat['value'] }}
+                            </button>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     @endforeach
