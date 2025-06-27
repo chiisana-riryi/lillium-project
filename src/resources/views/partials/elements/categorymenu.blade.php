@@ -116,6 +116,9 @@
         subcategoryId = "" + subcategoryId
 
         const urlParams = new URLSearchParams(window.location.search);
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(window.location.search);
+
         let subcategories = urlParams.get('subcats');
 
         if (subcategories != null) {
@@ -133,9 +136,10 @@
             subcategories = [, subcategoryId];
         }
 
-        const url = new URL(window.location.href);
         url.searchParams.set('subcats', subcategories);
-        url.searchParams.set('page', 1);
+        if (params.has('page')) {
+            url.searchParams.set('page', 1);
+        }
 
         window.location.href = url.toString();
     };

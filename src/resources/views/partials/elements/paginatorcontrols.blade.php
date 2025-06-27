@@ -28,8 +28,7 @@
         </button>
     @endfor
 
-    <button onclick="changePage({{ $page + 1 }})"
-        {{ (bool) ($page < $last_page) ? '' : 'disabled' }}
+    <button onclick="changePage({{ $page + 1 }})" {{ (bool) ($page < $last_page) ? '' : 'disabled' }}
         class="col-1 btn btn-white d-flex align-items-center justify-content-center border-0 text-reset">
 
         @if ((bool) ($page < $last_page))

@@ -8,7 +8,7 @@
     <style>
         .truncate-multiline {
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -56,17 +56,23 @@
                     @include('partials.elements.pageslabel')
                 </div>
 
+                {{--            PRODUCTS                 --}}
+
                 <div class="row d-flex justify-content-center">
                     <div class="d-inline-flex flex-wrap justify-content-start">
                         {{-- @for ($i = 0; $i < 100; $i++) --}}
                         @foreach ($paginator as $p)
                             <div class="p-1 col-4 col-xl-3 my-1">
-                                <a class="item-card card border-1 text-light text-decoration-none rounded-3 p-1" href="#">
-                                    <img class="img rounded-3 w-100" src="https://placehold.co/200">
+                                <a class="item-card card border-1 text-light text-decoration-none rounded-3 p-1"
+                                    href="{{ route('productpage', ['product_id' => $p->product_id]) }}">
+                                    <div class="ratio ratio-1x1">
+                                        <img class="img-fluid object-fit-cover border border-2 rounded-3"
+                                            src="{{ $p->image_directory != null ? 'storage/' . $p->image_directory : 'https://placehold.co/200' }}">
+                                    </div>
                                     <h6 class="my-2 text-end"> {{ $p->subcategory_name }}</h6>
                                     <h5 class="pt-2 my-0 text-truncate"> {{ $p->product_name }} </h5>
                                     <hr class="my-1">
-                                    <h6 class="my-0 text-end"> {{ $p->price }} </h6>
+                                    <h6 class="my-0 text-end"> ${{ $p->price }} </h6>
                                     <hr class="my-1">
                                     <p class="fs-smaller truncate-multiline m-0">
                                         {{ $p->description }}

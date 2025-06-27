@@ -11,12 +11,16 @@ class HomeController extends Controller
 
         $featured = DB::select(
             "
-            select p.product_id, c.category_id, p.product_name, c.category_name, p.price, p.description, pi.image_directory from products p
-            join categories c on c.category_id = p.category_id
+            select p.product_id, p.product_name, p.price, p.description, pi.image_directory from products p
             join subcategories s on s.subcategory_id  = p.subcategory_id 
             left join product_images pi on pi.product_id = p.product_id
             where p.is_featured = true
-            group by p.product_id, c.category_id, p.product_name, c.category_name, p.price, p.description, pi.image_directory
+            and pi.image_id = (
+                select MIN(image_id)
+                from product_images
+                where product_id = p.product_id
+            )
+            group by p.product_id, p.product_name, p.price, p.description, pi.image_directory
             order by pi.image_id
             ;
             "

@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class BaseProductController extends Controller
 {
-    public static function base_show(Request $request, $view)
+    public static function base_show(Request $request, $view, bool $sort_featured, bool $filter_on_sale)
     {
         $search_query = $request->get('search_query') ?? "";  
         $subcats = explode(",", $request->get('subcats')) ?? [];
@@ -21,17 +22,26 @@ class BaseProductController extends Controller
 
         $bindings = $categories;
         array_unshift($bindings, "%" . $search_query . "%");
+
+        $sort_featured_query = $sort_featured ? 'p.is_featured desc,' : '';
+        $filter_on_sale_query = $filter_on_sale ? 'and p.is_on_sale = true' : '';
         
         $products = DB::select(
             "
-            select p.product_id, c.category_id, p.product_name, c.category_name, s.subcategory_name, p.price, p.description, pi.image_directory from products p
-            join categories c on c.category_id = p.category_id
+            select p.product_id, p.product_name, s.subcategory_name, p.price, p.description, pi.image_directory from products p
             join subcategories s on s.subcategory_id  = p.subcategory_id 
             left join product_images pi on pi.product_id = p.product_id
             where p.product_name like ?
             $category_selector
-            group by p.product_id, c.category_id, p.product_name, c.category_name,s.subcategory_name, p.price, p.description, pi.image_directory
-            order by p.is_featured desc, pi.image_id asc
+            $filter_on_sale_query
+            and pi.image_id = (
+                select MIN(image_id)
+                from product_images
+                where product_id = p.product_id
+            )
+            group by p.product_id, p.product_name,s.subcategory_name, p.price, p.description, pi.image_directory
+            order by $sort_featured_query
+            pi.image_id asc
             ;
             "
             ,$bindings
@@ -58,7 +68,7 @@ class BaseProductController extends Controller
             } else {
                 array_push($categories_map[serialize($key)], ['key' => $c->subcategory_id, 'value'=> $c->subcategory_name]);
             }
-        }
+        }   
 
         return view(
             $view,

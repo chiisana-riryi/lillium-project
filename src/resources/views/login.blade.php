@@ -13,7 +13,7 @@
 <body class="bg-stars">
 
     <main class="container-fluid d-flex flex-column m-0 p-0 min-vh-100">
-        @include('partials.navbar', ['background_class' => "bg-dark-translucent"])
+        @include('partials.navbar', ['background_class' => 'bg-dark-translucent'])
 
         <div class="container d-flex flex-fill align-items-center justify-content-center pb-5">
             <div class="row w-100 text-light d-flex justify-content-center mb-5 pb-5">
@@ -24,6 +24,10 @@
                         <h4>
                             Login
                         </h4>
+                        
+                        @error('error')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
 
                         <hr class="my-1">
 
@@ -33,11 +37,12 @@
                             <div class="form-group">
                                 <label for="email"> Email </label>
                                 <input type="email" class="form-control" name="email" id="email"
-                                    placeholder="Enter Email">
+                                    value="{{ old('email') }}" placeholder="Enter Email">
                             </div>
                             <hr class="my-3">
                             <div class="form-group">
                                 <label for="password"> Password </label>
+
                                 <input type="password" class="form-control" name="password" id="password"
                                     placeholder="Enter Password">
                             </div>

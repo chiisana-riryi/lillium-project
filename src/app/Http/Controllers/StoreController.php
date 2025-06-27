@@ -10,6 +10,6 @@ use Illuminate\Support\Facades\DB;
 class StoreController extends Controller
 {
     public function show(Request $request) {
-        return BaseProductController::base_show($request, 'store');
+        return BaseProductController::base_show($request, 'store', true, true);
     }
 }

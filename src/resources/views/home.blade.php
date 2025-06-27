@@ -76,14 +76,16 @@
 
             <div id="scroll-row" class="sideways-scroll-row row">
                 <div class="col sideways-scroll-item">
-                    @for ($i = 0; $i < ceil((50 / count($featured))); $i++)
+                    @for ($i = 0; $i < ceil(50 / count($featured)); $i++)
                         @foreach ($featured as $f)
                             <a class="item-card card d-inline-block text-light text-decoration-none p-2" href="#">
-                                <img class="img w-100" src="https://placehold.co/200"
-                                    style="width: 200px; height: 200px;">
-                                <h4 class="pt-2 my-0"> {{ $f->product_name }} </h4>
+                                <div class="ratio ratio-1x1" style="width: 200px;">
+                                    <img class="img-fluid object-fit-cover border border-3 rounded-3"
+                                        src="{{ $f->image_directory != null ? 'storage/' . $f->image_directory : 'https://placehold.co/200' }}">
+                                </div>
+                                <h5 class="pt-2 my-0 text-truncate" style="width: 200px; "> {{ $f->product_name }}</h5>
                                 <hr class="my-1">
-                                <h5 class="my-0 text-end"> {{ $f->price }} </h5>
+                                <h5 class="my-0 text-end"> ${{ $f->price }} </h5>
                                 <hr class="my-1">
                             </a>
                         @endforeach
