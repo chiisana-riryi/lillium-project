@@ -78,7 +78,8 @@
                 <div class="col sideways-scroll-item">
                     @for ($i = 0; $i < ceil(50 / count($featured)); $i++)
                         @foreach ($featured as $f)
-                            <a class="item-card card d-inline-block text-light text-decoration-none p-2" href="{{ route('productpage', ['product_id' => $p->product_id]) }}">
+                            <a class="item-card card d-inline-block text-light text-decoration-none p-2"
+                                href="{{ route('productpage', ['product_id' => $f->product_id]) }}">
                                 <div class="ratio ratio-1x1" style="width: 200px;">
                                     <img class="img-fluid object-fit-cover border border-3 rounded-3"
                                         src="{{ $f->image_directory != null ? 'storage/' . $f->image_directory : 'https://placehold.co/200' }}">
