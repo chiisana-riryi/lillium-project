@@ -11,6 +11,10 @@ Route::get('/', function () {
     return redirect('/home');
 });
 
+Route::get('/codex', function() {
+   return view('static.codex'); 
+});
+
 Route::get('/home', [HomeController::class, 'show']);
 
 Route::get('/store', [StoreController::class, 'show']);

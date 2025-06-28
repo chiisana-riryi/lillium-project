@@ -2,7 +2,7 @@
     $is_compact_mode = isset($compact_mode) && $compact_mode == true;
 @endphp
 
-<div class="item-card card pt-2 px-2 text-light">
+<div class="back-card card pt-2 px-2 text-light">
 
     @foreach ($categories_map as $key => $subcats)
         @php

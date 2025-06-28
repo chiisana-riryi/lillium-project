@@ -15,7 +15,7 @@
             <div class="collapse navbar-collapse" id="navbar-content">
                 <ul class="navbar-nav text-end ms-auto gap-lg-5 fw-semibold">
                     <li class="nav-item">
-                        <a class="nav-link fs-5 text-light" href="#">Codex&nbsp;<i class="bi bi-book"></i></a>
+                        <a class="nav-link fs-5 text-light" href="/codex">Codex&nbsp;<i class="bi bi-book"></i></a>
                     </li>
 
                     <li class="nav-item">

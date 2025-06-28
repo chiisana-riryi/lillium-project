@@ -28,8 +28,6 @@ class BaseProductController extends Controller
             'name' => 'p.product_name'
         ];
 
-        $sort_by = $request->get('sortBy') ?? 'featured';
-        $sort_order = $request->get('sortOrder') ?? 'asc';
 
         $categories = array_filter($subcats);
         $category_question_marks = implode(", ", array_fill(0, count($categories), "?"));
@@ -38,8 +36,12 @@ class BaseProductController extends Controller
         $bindings = $categories;
         array_unshift($bindings, "%" . $search_query . "%");
 
-        $sort_by_query = array_key_exists('sortBy', $validated) ? $sortByMap[$validated['sortBy']] ?? 'p.is_featured' : 'p.is_featured';
-        $sort_order_query = array_key_exists('sortOrder', $validated) ? $validated['sortOrder'] ?? 'asc' : 'asc';
+
+        $sort_by = $validated['sortBy'] ?? 'featured';
+        $sort_order = $validated['sortOrder'] ?? 'desc';
+        $sort_by_query = $sortByMap[$sort_by] ?? 'p.is_featured';
+        $sort_order_query = $validated['sortOrder'] ?? 'desc';
+
 
         // $sort_featured_query = $sort_featured ? 'p.is_featured desc,' : '';
         $filter_on_sale_query = $filter_on_sale ? 'and p.is_on_sale = true' : '';
