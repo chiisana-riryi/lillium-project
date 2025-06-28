@@ -78,7 +78,7 @@
                 <div class="col sideways-scroll-item">
                     @for ($i = 0; $i < ceil(50 / count($featured)); $i++)
                         @foreach ($featured as $f)
-                            <a class="item-card card d-inline-block text-light text-decoration-none p-2" href="#">
+                            <a class="item-card card d-inline-block text-light text-decoration-none p-2" href="{{ route('productpage', ['product_id' => $p->product_id]) }}">
                                 <div class="ratio ratio-1x1" style="width: 200px;">
                                     <img class="img-fluid object-fit-cover border border-3 rounded-3"
                                         src="{{ $f->image_directory != null ? 'storage/' . $f->image_directory : 'https://placehold.co/200' }}">
@@ -104,11 +104,11 @@
             const maxScroll = container.scrollWidth;
             const current = container.scrollLeft;
 
-            if (current >= maxScroll * 0.75) {
+            if (current > maxScroll * 0.75) {
                 container.scrollLeft = current - (maxScroll / 2);
             }
 
-            if (current <= maxScroll * 0.25) {
+            if (current < maxScroll * 0.25) {
                 container.scrollLeft = current + (maxScroll / 2);
             }
         }
@@ -121,7 +121,7 @@
             if (Math.abs(velocity) > 0.1) {
                 container.scrollLeft += velocity * delta / 16;
 
-                velocity *= 0.9985;
+                velocity *= 0.99899;
                 validateScrollPosition();
                 requestAnimationFrame(animateScroll);
 
