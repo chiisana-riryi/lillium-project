@@ -253,7 +253,7 @@
 
                                         <p>
                                             Psychic artifacts have the ability to impact the mind of sentient beings and
-                                            creatures, even without their knowledge or consent. The Black Spray, which is
+                                            creatures, even without their knowledge or consent. The Itcher, which is
                                             able
                                             to affect the minds of surrounding humans and animals, is one example.
                                         </p>
