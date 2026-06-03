@@ -83,6 +83,7 @@ jobs:
         run: |
           cat > .env <<EOF
           APP_NAME=Laravel
+          APP_KEY=
           APP_ENV=local
           APP_DEBUG=true
           APP_URL=http://localhost
