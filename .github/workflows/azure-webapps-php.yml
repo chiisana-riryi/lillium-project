@@ -36,8 +36,6 @@ env:
   DB_USERNAME: ${{ secrets.DB_USERNAME }}
   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
 
-  APP_KEY: ${{ secrets.APP_KEY }}
-
 permissions:
   contents: read
 
@@ -80,11 +78,31 @@ jobs:
         working-directory: src
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
+      - name: Generate .env file
+        working-directory: src
+        run: |
+          cat > .env <<EOF
+          APP_NAME=Laravel
+          APP_ENV=local
+          APP_KEY=${{ secrets.APP_KEY }}
+          APP_DEBUG=true
+          APP_URL=http://localhost
+
+          DB_CONNECTION=mariadb
+          DB_HOST=${{ secrets.DB_URL }}
+          DB_PORT=3306
+          DB_DATABASE=lillium
+          DB_USERNAME=${{ secrets.DB_USERNAME }}
+          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+
+          LOG_CHANNEL=stack
+          EOF
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: php-app
-          path: .
+          path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
       
   deploy:
     permissions:
