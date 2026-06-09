@@ -7,9 +7,7 @@ Browser::macro('debugDump', function ($label = null) {
     dump($label);
     dump('URL: ' . $this->driver->getCurrentURL());
     dump('TITLE: ' . $this->driver->getTitle());
-    dump(substr($this->text(), 0, 1000));
-    dump('===========================================');
-
+    dump(substr($this->driver->getPageSource(), 0, 1000));    dump('===========================================');
     return $this;
 });
 
