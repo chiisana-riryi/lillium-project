@@ -3,13 +3,13 @@
 use Laravel\Dusk\Browser;
 
 Browser::macro('debugDump', function ($label = null) {
-    dump("\n===========================================");
-    dump("{$label}");
-    dump("===========================================");
+    dump('===========================================');
+    dump($label);
+    dump('URL: ' . $this->driver->getCurrentURL());
+    dump('TITLE: ' . $this->driver->getTitle());
+    dump(substr($this->text(), 0, 1000));
+    dump('===========================================');
 
-    dump($this->driver->getPageSource());
-
-    dump("===========================================\n");
     return $this;
 });
 
