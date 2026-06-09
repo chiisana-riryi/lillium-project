@@ -128,7 +128,7 @@ jobs:
           name: php-app
 
       - name: Run Pest Tests
-        run: php artisan test --pest
+        run: ./vendor/bin/pest
 
       - name: Install Dusk ChromeDriver
         run: php artisan dusk:chrome-driver --detect
