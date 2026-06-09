@@ -105,7 +105,7 @@ jobs:
         working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
         run: php artisan key:generate --force
 
-      - name: Upload artifact for deployment job
+      - name: Upload build atifact
         uses: actions/upload-artifact@v4
         with:
           name: php-app
@@ -117,6 +117,11 @@ jobs:
     needs: build
 
     steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@7c0b4c8c8ebed23eca9ec2802474895d105b11bc
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
