@@ -3,17 +3,18 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class LoginController extends Controller
 {
-    public function show() {
+    public function show() : View {
         return view('login');
     }
 
-    public function login(Request $request)
+    public function login(Request $request) : RedirectResponse
     {
         $validated = $request->validate(
             [
@@ -33,7 +34,8 @@ class LoginController extends Controller
         }
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request) : RedirectResponse
+    {
         Auth::logout();
 
         $request->session()->invalidate();

@@ -18,7 +18,7 @@ test('user password is cast to hashed', function () {
     expect($user->getCasts()['password'])->toBe('hashed');
 });
 
-test('user email_verified_at is cast to datetime', function () {
+test('user email_verified_at is cast to datetime'   , function () {
     $user = new User();
     expect($user->getCasts())->toHaveKey('email_verified_at');
     expect($user->getCasts()['email_verified_at'])->toBe('datetime');
