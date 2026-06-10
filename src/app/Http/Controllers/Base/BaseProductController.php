@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 use phpDocumentor\Reflection\Types\Boolean;
 
 class BaseProductController extends Controller
 {
-    public static function base_show(Request $request, $view, bool $sort_featured, bool $filter_on_sale)
+    public static function base_show(Request $request, string $view, bool $sort_featured, bool $filter_on_sale) : View
     {
         $search_query = $request->get('search_query') ?? "";
         $subcats = explode(",", $request->get('subcats')) ?? [];

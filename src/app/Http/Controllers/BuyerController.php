@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class BuyerController extends Controller
 {
-    public function buy_product(Request $request) {
+    public function buy_product(Request $request) 
+    {
 
 
         $validated = $request->validate([
