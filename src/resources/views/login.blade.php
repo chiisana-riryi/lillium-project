@@ -18,7 +18,7 @@
         <div class="container d-flex flex-fill align-items-center justify-content-center pb-5">
             <div class="row w-100 text-light d-flex justify-content-center mb-5 pb-5">
                 <div class="col-8 col-md-6 col-lg-5 mb-5">
-                    <h1 class="mb-0"> Welcome&nbsp;Traveller </h1>
+                    <h1 class="mb-0"> Hello&nbsp;Traveller </h1>
                     <hr class="mt-1 mb-3 border-5">
                     <div class="card bg-dark-translucent border-1 border-light px-3 py-3 text-light rounded-4">
                         <h4>
