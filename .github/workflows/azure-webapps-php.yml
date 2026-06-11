@@ -121,6 +121,7 @@ jobs:
         uses: shivammathur/setup-php@7c0b4c8c8ebed23eca9ec2802474895d105b11bc
         with:
           php-version: ${{ env.PHP_VERSION }}
+          coverage: xdebug
 
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
@@ -128,7 +129,7 @@ jobs:
           name: php-app
 
       - name: Run Pest Tests
-        run:  php vendor/bin/pest
+        run:  XDEBUG_MODE=coverage php vendor/bin/pest --coverage
       
       - name: Run Larastan Tests
         run:  php vendor/bin/phpstan analyse
